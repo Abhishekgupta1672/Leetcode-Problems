@@ -1,25 +1,22 @@
 class Solution {
 public:
     bool isPalindrome(ListNode* head) {
-        if(head==NULL)
-            return false;
-        else if(head->next==NULL)
-            return true;
-        ListNode *newHead = NULL,*cur = head;
-        while(cur!=NULL)
+        stack<int>st;
+        ListNode* temp = head;
+        while(temp!=NULL)
         {
-            ListNode *newNode = new ListNode(cur->val);
-            newNode->next = newHead;
-            newHead = newNode;
-            cur = cur->next;
+            st.push(temp->val);
+            temp = temp->next;
         }
-        while(head!=NULL && newHead!=NULL)
+        // int t = 0;
+        while(head!=NULL)
         {
-            if(head->val != newHead->val)
+            int t = st.top();
+            st.pop();
+            if(head->val != t)
                 return false;
             head = head->next;
-            newHead = newHead->next;
         }
-        return (!newHead && !head);
+        return true;
     }
 };
