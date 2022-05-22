@@ -29,7 +29,7 @@ public:
         {
             return head->next;
         }
-        for(int i=1;i<pos;i++)
+        for(int i=0;i<pos-1;i++)
         {
             temp = temp->next;
         }
