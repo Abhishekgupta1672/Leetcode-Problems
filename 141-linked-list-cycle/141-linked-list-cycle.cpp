@@ -9,16 +9,16 @@
 class Solution {
 public:
     bool hasCycle(ListNode *head) {
-        int cnt = 0;
-        if(!head)
-            return false;
-        while(head)
+        map<ListNode* , bool>mp;
+        ListNode* cur = head;
+        while(cur!=NULL)
         {
-            if(cnt>100000)
-                break;
-            cnt++;
-            head = head->next;
+            if(mp.find(cur)!=mp.end())
+                return true;
+            else
+                mp[cur] = true;
+            cur = cur->next;
         }
-        return cnt>100000?true:false;
+        return false;
     }
 };
