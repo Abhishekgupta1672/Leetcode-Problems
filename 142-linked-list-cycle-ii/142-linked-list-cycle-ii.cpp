@@ -9,23 +9,19 @@
 class Solution {
 public:
     ListNode *detectCycle(ListNode *head) {
-        ListNode* slow = head;
-        ListNode* fast = head;
-        ListNode* entry = head;
-        while(fast!=nullptr && fast->next!=nullptr)
+        // if(head==nullptr || head->next == nullptr)
+        //     return nullptr;
+        unordered_map<ListNode* , int>mp;
+        ListNode* temp = head;
+        while(temp!=NULL)
         {
-            slow = slow->next;
-            fast = fast->next->next;
-            if(slow==fast)
+            mp[temp]++;
+            if(mp[temp]>1)
             {
-                while(entry!=slow)
-                {
-                    slow = slow->next;
-                    entry = entry->next;
-                }
-                return entry;
+                break;
             }
+            temp = temp->next;
         }
-        return nullptr;
+        return temp;
     }
 };
