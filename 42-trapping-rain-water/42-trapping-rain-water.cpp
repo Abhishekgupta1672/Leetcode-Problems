@@ -8,7 +8,7 @@ public:
         {
             if(nums[left]<=nums[right])
             {
-                if(nums[left]>=leftmax)
+                if(nums[left]>leftmax)
                     leftmax = nums[left];
                 else
                 {
@@ -18,7 +18,7 @@ public:
             }
             else
             {
-                if(nums[right]>=rightmax)
+                if(nums[right]>rightmax)
                     rightmax = nums[right];
                 else
                 {
