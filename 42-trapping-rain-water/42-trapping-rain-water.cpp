@@ -6,7 +6,7 @@ public:
         int res = 0;
         while(left<right)
         {
-            if(nums[left]<=nums[right])
+            if(nums[left]<nums[right])
             {
                 if(nums[left]>leftmax)
                     leftmax = nums[left];
