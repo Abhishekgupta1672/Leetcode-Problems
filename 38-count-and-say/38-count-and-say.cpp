@@ -6,22 +6,23 @@ public:
         string str = "1";
         for(int i=2;i<=n;i++)
         {
-            int len = str.length();
-            int cnt=1;
+            int len = str.size();
             string temp = "";
-            for(int j=1;j<len;j++)
+            int cnt = 1;
+            for(int j = 1;j<len;j++)
             {
                 if(str[j]!=str[j-1])
                 {
-                    temp+= cnt+'0';
+                    temp+=cnt+'0';
                     temp+=str[j-1];
                     cnt = 1;
                 }
                 else
                     cnt++;
+                
             }
-            temp += cnt+'0';
-            temp += str.back();
+            temp+=cnt+'0';
+            temp+=str.back();
             str = temp;
         }
         return str;
