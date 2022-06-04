@@ -1,40 +1,33 @@
 class Solution {
 public:
     double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
-        int n = nums1.size() , m = nums2.size();
-        vector<double>merge;
-        int i = 0 , j = 0;
-        while(i<n && j<m)
+        if(nums2.size()<nums1.size())
+            return findMedianSortedArrays(nums2,nums1);
+        int n1 = nums1.size();
+        int n2 = nums2.size();
+        int low = 0 , high = n1;
+        while(low<=high)
         {
-            if(nums1[i]<=nums2[j])
+            int cut1 = low+(high-low)/2;
+            int cut2 = (n1+n2+1)/2-cut1;
+            
+            int l1 = cut1 ==0 ?INT_MIN:nums1[cut1-1];
+            int l2 = cut2 ==0?INT_MIN:nums2[cut2-1];
+            int r1 = cut1==n1?INT_MAX:nums1[cut1];
+            int r2 = cut2==n2?INT_MAX:nums2[cut2];
+            
+            if(l1<=r2 && l2<=r1)
             {
-                merge.push_back(nums1[i]);
-                i++;
+                if((n1+n2)%2==0)
+                    return (max(l1,l2)+min(r1,r2))/2.0;
+                else
+                    return max(l1,l2);
             }
+            else if(l1>r2)
+                high = cut1-1;
             else
-            {
-                merge.push_back(nums2[j]);
-                j++;
-            }
+                low = cut1+1;
         }
-        while(i<n)
-        {
-            merge.push_back(nums1[i]);
-            i++;
-        }
-        while(j<m)
-        {
-            merge.push_back(nums2[j]);
-            j++;
-        }
-        int sz = merge.size();
-        double res = 0;
-        if(sz&1)
-        {
-            res = merge[sz/2];
-        }
-        else
-            res = (merge[(sz-1)/2]+merge[sz/2])/2;
-        return res;
+        return 0.0;
     }
 };
