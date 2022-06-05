@@ -25,7 +25,7 @@ class Solution
             if(v[i].second > finish)
             {
                 ans+=1;
-                strt = v[i].second;
+                // strt = v[i].second;
                 finish = v[i].first;
             }
         }
