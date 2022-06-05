@@ -30,8 +30,7 @@ class Solution{
                 platform=0;
                 j++;
             }
-            if(platform >= result)
-            result = platform;
+            result = max(platform , result);
         }
         return result;
     }
