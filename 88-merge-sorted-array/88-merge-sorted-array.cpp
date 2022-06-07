@@ -21,6 +21,6 @@ public:
         {
             nums1[k--] = nums2[j--];
         }
-        return false;
+        return nums1.empty();
     }
 };
