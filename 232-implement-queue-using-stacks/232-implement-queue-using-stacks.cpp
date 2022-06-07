@@ -1,14 +1,11 @@
 class MyQueue {
 public:
     stack<int>s1,s2;
-    int front;
     MyQueue() {
         
     }
     
     void push(int x) {
-        if(s1.empty())
-            front = x;
         s1.push(x);
     }
     
