@@ -1,6 +1,6 @@
 class Solution {
 public:
-    set<int> merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+    bool merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
         int i = m-1 , j = n-1 , k = m+n-1;
         while(i>=0 && j>=0)
         {
@@ -21,6 +21,6 @@ public:
         {
             nums1[k--] = nums2[j--];
         }
-        return set<int>();
+        return false;
     }
 };
