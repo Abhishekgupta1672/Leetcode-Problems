@@ -3,37 +3,30 @@ public:
     vector<int> nextGreaterElement(vector<int>& nums1, vector<int>& nums2) {
         int n = nums1.size();
         int m = nums2.size();
-        vector<int>v;
-        for(int i=0;i<n;i++)
+        unordered_map<int ,int>mp;
+        stack<int>st;
+        for(int i=m-1;i>=0;i--)
         {
-            for(int j=0;j<m;j++)
+            if(!st.empty())
             {
-                if(nums1[i]==nums2[j])
-                {
-                if(j==m-1)
-                {
-                    v.push_back(-1);
-                    break;
-                }
+                while(!st.empty() && st.top()<nums2[i])
+                    st.pop();
+                if(st.empty())
+                    mp[nums2[i]]=-1;
                 else
                 {
-                    for(int k=j+1;k<m;k++)
-                    {
-                        if(nums2[k]>nums1[i])
-                        {
-                            v.push_back(nums2[k]);
-                            break;
-                        }
-                        else if(k==m-1)
-                        {
-                            v.push_back(-1);
-                        }
-                    }
-                }
-                break;
+                    mp[nums2[i]] = st.top();
                 }
             }
+            if(i==m-1)
+                mp[nums2[i]]=-1;
+            st.push(nums2[i]);
         }
-        return v;
+        vector<int>v;
+        for(auto i:nums1)
+        {
+            v.push_back(mp[i]);
+        }
+        return v; 
     }
 };
