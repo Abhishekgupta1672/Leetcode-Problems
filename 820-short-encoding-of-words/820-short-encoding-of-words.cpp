@@ -1,26 +1,25 @@
 class Solution {
 public:
-    static bool cmp (string& a, string& b) {
-        return a.size() > b.size();
-    }
-    
+    static bool cmp(string &a , string &b)
+    {
+        return a.size()>b.size();
+    };
     int minimumLengthEncoding(vector<string>& words) {
-        unordered_map<string, int> mp;
+        unordered_map<string , int>mp;
         int ans = 0;
-        sort(words.begin(), words.end(), cmp);
-        for(int i=0; i<words.size(); i++){
-            mp[words[i]]++;
-        }
-        for(int i=0; i<words.size(); i++)
+        sort(words.begin() , words.end() , cmp);
+        for(auto x:words)
+            mp[x]++;
+        for(int i=0;i<words.size();i++)
         {
             int k = words[i].size();
-            if(mp[words[i]] >0)
+            if(mp[words[i]]>0)
             {
-                ans += (k+1);
+                ans+=(k+1);
             }
-            for(int j=k-1; j>=0; j--)
+            for(int j=k-1;j>=0;j--)
             {
-                string s = words[i].substr(j, k-j);
+                string s = words[i].substr(j , j-k);
                 mp[s] = 0;
             }
         }
