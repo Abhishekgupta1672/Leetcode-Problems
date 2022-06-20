@@ -1,13 +1,13 @@
 class Solution {
 public:
-    static bool compare (string& first, string& second) {
-        return first.size() > second.size();
+    static bool cmp (string& a, string& b) {
+        return a.size() > b.size();
     }
     
     int minimumLengthEncoding(vector<string>& words) {
         unordered_map<string, int> mp;
         int ans = 0;
-        sort(words.begin(), words.end(), compare);
+        sort(words.begin(), words.end(), cmp);
         for(int i=0; i<words.size(); i++){
             mp[words[i]]++;
         }
