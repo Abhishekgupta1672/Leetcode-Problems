@@ -16,7 +16,8 @@ public:
             return NULL;
         }else if(!root1){
             return root2;
-        }else if(!root2) return root1;
+        }else if(!root2) 
+            return root1;
         TreeNode *newNode = new TreeNode(0);
         if(root1) newNode->val += root1->val;
         if(root2) newNode->val += root2->val;
