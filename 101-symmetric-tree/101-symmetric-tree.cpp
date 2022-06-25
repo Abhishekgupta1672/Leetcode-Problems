@@ -11,15 +11,15 @@
  */
 class Solution {
 public:
-    bool mirror(TreeNode* left , TreeNode* right)
+    bool check(TreeNode* left,TreeNode* right)
     {
         if(left==NULL || right==NULL)
             return left==right;
-        else
-            return (left->val==right->val) && (mirror(left->left , right->right) && mirror(left->right , right->left));
+        if(left->val!=right->val)
+            return false;
+        return check(left->left,right->right) && check(left->right,right->left);
     }
-    
     bool isSymmetric(TreeNode* root) {
-        return root==NULL || mirror(root->left , root->right);
+        return check(root->left,root->right);
     }
 };
