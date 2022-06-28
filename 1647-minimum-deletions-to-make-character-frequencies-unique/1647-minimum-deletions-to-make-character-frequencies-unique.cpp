@@ -1,20 +1,21 @@
 class Solution {
 public:
     int minDeletions(string s) {
-        vector<int>v(26,0);
-        for(char x : s)
-            v[x-'a']++;
-        int deletecnt = 0;
-        unordered_set<int>st;
-        for(int i=0;i<26;i++)
+        unordered_map<char , int>mp;
+        for(const char &X: s)
+            mp[X]++;
+        int ans = 0;
+        unordered_set<int>seen;
+        for(auto i : mp)
         {
-            while(v[i] && st.find(v[i])!=st.end())
+            while(seen.find(i.second) != seen.end())
             {
-                v[i]--;
-                deletecnt++;
+                (i.second)--;
+                ans++;
             }
-            st.insert(v[i]);
+            if(i.second>0)
+                seen.insert(i.second);
         }
-        return deletecnt;
+        return ans;
     }
 };
