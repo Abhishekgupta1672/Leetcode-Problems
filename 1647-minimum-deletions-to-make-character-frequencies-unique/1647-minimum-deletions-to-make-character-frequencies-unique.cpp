@@ -6,15 +6,15 @@ public:
             mp[X]++;
         int ans = 0;
         unordered_set<int>seen;
-        for(auto i : mp)
+        for(auto [k,i] : mp)
         {
-            while(seen.find(i.second) != seen.end())
+            while(seen.find(i) != seen.end())
             {
-                (i.second)--;
+                i--;
                 ans++;
             }
-            if(i.second>0)
-                seen.insert(i.second);
+            if(i>0)
+                seen.insert(i);
         }
         return ans;
     }
