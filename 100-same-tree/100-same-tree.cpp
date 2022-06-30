@@ -1,14 +1,4 @@
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
- * };
- */
+
 class Solution {
 public:
     bool isSameTree(TreeNode* p, TreeNode* q) {
@@ -25,7 +15,7 @@ public:
             q2.pop();
             if(t1->val != t2->val) 
                 return false;
-            if((t1->left ==NULL && t2->left!=NULL) || (t1->left !=NULL && t2->left==NULL))
+            if((t1->left ==NULL && t2->left) || (t1->left && t2->left==NULL))
                 return false;
             if((t1->right ==NULL && t2->right!=NULL) || (t1->right !=NULL && t2->right==NULL))
                 return false;
