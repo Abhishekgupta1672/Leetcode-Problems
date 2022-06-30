@@ -1,6 +1,6 @@
 class Solution {
 public:
-   struct comparator
+   struct cmp
    {
        bool operator()(string &s1,string &s2) {
            if(s1.size()!=s2.size())
@@ -9,7 +9,7 @@ public:
         }
    };
     string kthLargestNumber(vector<string>& nums, int k) {
-        priority_queue<string , vector<string> , comparator>pq;
+        priority_queue<string , vector<string> , cmp>pq;
         for(int i=0;i<k;i++)
         {
             pq.push(nums[i]);
