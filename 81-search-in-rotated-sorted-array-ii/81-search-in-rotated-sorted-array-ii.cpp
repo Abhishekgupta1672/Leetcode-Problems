@@ -4,7 +4,6 @@ public:
         int l = 0 , r = nums.size()-1;
         while(l<=r)
         {
-            
             while(l<r && nums[l]==nums[l+1])
                 l++;
             while(l<r && nums[r]==nums[r-1])
@@ -20,13 +19,12 @@ public:
             }
             else
             {
-                if(target<=nums[r] && target>=nums[mid])
+                if(target>=nums[mid] && target<=nums[r])
                     l = mid+1;
                 else
                     r = mid-1;
             }
         }
-
         return false;
     }
 };
