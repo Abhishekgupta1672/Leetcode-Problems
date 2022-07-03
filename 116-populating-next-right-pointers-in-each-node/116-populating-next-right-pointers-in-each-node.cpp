@@ -24,18 +24,17 @@ public:
         q.push(root);
         while(!q.empty()){
             int n = q.size();
-            Node *prev = NULL,*cur = NULL;
+            Node *prev = NULL;
             for(int i = 0 ; i < n ; i++){
-                cur = q.front();
+                Node* cur = q.front();
                 q.pop();
-                if(cur->left)
-                    q.push(cur->left);
+                cur->next = prev;
+                prev = cur;
                 if(cur->right)
                     q.push(cur->right);
-                if(prev){
-                    prev->next = cur; 
-                }
-                prev = cur;
+                if(cur->left)
+                    q.push(cur->left);
+                
             }
         }
         return root;
