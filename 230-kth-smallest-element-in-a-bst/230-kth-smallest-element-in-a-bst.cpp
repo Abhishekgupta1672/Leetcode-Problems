@@ -13,7 +13,7 @@ class Solution {
 public:
     int kthSmallest(TreeNode* root, int k) {
         vector<int>res;
-        if(!root) return 0;
+        // if(!root) return 0;
         stack<TreeNode*>st;
         while(!st.empty() || root!=NULL)
         {
@@ -30,6 +30,6 @@ public:
                 root = root->right;
             }
         }
-        return res[k-1];
+        return res[k-1];   
     }
 };
