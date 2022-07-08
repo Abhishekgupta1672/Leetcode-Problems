@@ -11,12 +11,12 @@ public:
         return root;
     }
     
-    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
-        int preStart = 0 , preEnd = preorder.size()-1;
-        int inStart = 0 , inEnd = inorder.size()-1;
+    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) 
+    {
+        if(inorder.size() != preorder.size()) return NULL;
         map<int,int>mp;
-        for(int i=inStart;i<=inEnd;i++)
+        for(int i=0;i<inorder.size();i++)
             mp[inorder[i]]=i;
-        return constructTree(preorder, preStart, preEnd, inorder, inStart, inEnd, mp);
+        return constructTree(preorder, 0, preorder.size()-1, inorder, 0 ,inorder.size()-1, mp);
     }
 };
