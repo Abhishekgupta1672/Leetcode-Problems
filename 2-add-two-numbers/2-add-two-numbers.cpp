@@ -11,7 +11,7 @@
 class Solution {
 public:
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-        int carry = 0 , x , y;
+        int x = 0 , y = 0 ,carry = 0;
         ListNode* head = new ListNode() , *tail = head;
         while(l1 || l2 || carry)
         {
@@ -20,15 +20,13 @@ public:
                 x = l1->val;
                 l1 = l1->next;
             }
-            else
-                x=0;
+            else x=0;
             if(l2)
             {
                 y = l2->val;
                 l2 = l2->next;
             }
-            else
-                y=0;
+            else y=0;
             
             int temp = x+y+carry;
             tail->next = new ListNode(temp%10);
