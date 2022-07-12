@@ -1,7 +1,7 @@
 class Solution {
 public:
     void reorderList(ListNode* head) {
-        if(!head || !head->next || !head->next->next) return ;
+        if(!head) return;
         ListNode* temp = head;
         stack<ListNode*>st;
         int sz = 0;
