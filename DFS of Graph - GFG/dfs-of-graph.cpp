@@ -5,7 +5,7 @@ using namespace std;
  // } Driver Code Ends
 class Solution {
   public:
-  void dfsrec(int node , vector<int> adj[] , vector<bool>&vis , vector<int>&dfs)
+  void dfsrec(int node , vector<int>adj[], vector<bool>&vis , vector<int>&dfs)
   {
       vis[node] = true;
       dfs.push_back(node);
@@ -19,7 +19,7 @@ class Solution {
   
     vector<int> dfsOfGraph(int V, vector<int> adj[]) {
         vector<int>dfs;
-        vector<bool>vis(V+1,false);
+        vector<bool>vis(V,false);
         for(int i=0;i<V;i++)
         {
             if(vis[i]==false)
