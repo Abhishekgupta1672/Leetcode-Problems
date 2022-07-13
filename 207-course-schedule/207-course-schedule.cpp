@@ -1,29 +1,35 @@
 class Solution {
 public:
-    bool checkForCycle(int s , vector<int>adj[] , vector<int>&vis)
-    {
-        if(vis[s]==1) return true;
-         if(vis[s]==0)
-         {
-            vis[s]=1;
-            for(auto edge : adj[s]){
-                if(checkForCycle(edge,adj,vis))
-                    return true;
-            }
-        }
-        vis[s]=2;
-        return false;
-    }
     bool canFinish(int V, vector<vector<int>>& pre) {
         vector<int>adj[V];
-        for(auto edge : pre)
-            adj[edge[1]].push_back(edge[0]);
-        vector<int>vis(V+1,0);
+        vector<int>vis(V,0);
+        for(auto itr:pre)
+        {
+          adj[itr[0]].push_back(itr[1]);
+          vis[itr[1]]++;
+        }
+        queue<int>q;
+        vector<int>vec;
         for(int i=0;i<V;i++)
         {
-            if(checkForCycle(i,adj,vis))
-                return false;
+          if(vis[i]==0)
+          {
+            q.push(i);
+          }
         }
-        return true;
+        while(!q.empty())
+        {
+          auto node=q.front();
+          q.pop();
+          vec.push_back(node);
+          for(auto x:adj[node])
+          {
+            if(--vis[x]==0)
+            {
+              q.push(x);
+            }
+          }
+        }
+	   return (vec.size()==V); 
     }
 };
