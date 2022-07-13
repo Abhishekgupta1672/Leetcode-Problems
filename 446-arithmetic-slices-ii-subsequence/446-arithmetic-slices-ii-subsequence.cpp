@@ -4,16 +4,16 @@ public:
         int n = nums.size();
         if(n<3) return 0;
         int res = 0;
-        vector<unordered_map<long long int,long long int>>dp(n);
+        vector<unordered_map<int,int>>dp(n);
         for (int i = 0; i < nums.size(); i++) 
         {
             for (int j = 0; j < i; j++) 
             {
-                long long int d = (long long int)nums[i] - nums[j];
+                long d = (long)nums[i] - (long)nums[j];
+                if(d<INT_MIN || d>INT_MAX) continue;
                 if (!dp[j].count(d)) 
-                {
                     dp[i][d]++;
-                } else 
+                else 
                 {
                     res += dp[j][d];
                     dp[i][d] += dp[j][d] + 1;
