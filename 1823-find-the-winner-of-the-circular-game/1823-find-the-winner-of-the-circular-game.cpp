@@ -1,11 +1,21 @@
 class Solution {
 public:
-    int solve(int n , int k)
-    {
-        if(n==1) return 0;
-        return (solve(n-1,k)+k)%n;
-    }
     int findTheWinner(int n, int k) {
-        return solve(n,k)+1;
+        queue<int>q;
+        for(int i=1;i<=n;i++)
+            q.push(i);
+        while(q.size()!=1)
+        {
+            int round = k;
+            while(round>1)
+            {
+                int temp = q.front();
+                q.pop();
+                q.push(temp);
+                round--;
+            }
+            q.pop();
+        }
+        return q.front();
     }
 };
