@@ -1,22 +1,21 @@
 class Solution {
 public:
-    TreeNode* constructTree(vector<int>& preorder,int preStart,int preEnd, vector<int>& inorder,int inStart,int inEnd,map<int,int>&mp)
+    TreeNode* solve(vector<int>&pre,int ps,int pe,vector<int>&in,int is,int ie,map<int,int>&mp)
     {
-        if(preStart>preEnd || inStart>inEnd) return NULL;
-        TreeNode* root = new TreeNode(preorder[preStart]);
-        int inRoot = mp[root->val];
-        int numsleft = inRoot - inStart;
-        root->left = constructTree(preorder, preStart + 1, preStart + numsleft, inorder,inStart, inRoot - 1, mp);
-        root->right = constructTree(preorder, preStart + numsleft + 1, preEnd, inorder,inRoot + 1, inEnd, mp);
+        if(ps>pe || is>ie) return NULL;
+        TreeNode* root = new TreeNode(pre[ps]);
+        int inroot = mp[root->val];
+        int lft = inroot-is;
+        root->left = solve(pre,ps+1,ps+lft,in,is,inroot-1,mp);
+        root->right = solve(pre,ps+lft+1,pe,in,inroot+1,ie,mp);
         return root;
     }
-    
-    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) 
+    TreeNode* buildTree(vector<int>& pre, vector<int>& in)
     {
-        if(inorder.size() != preorder.size()) return NULL;
+        if(pre.size() != in.size()) return NULL;
         map<int,int>mp;
-        for(int i=0;i<inorder.size();i++)
-            mp[inorder[i]]=i;
-        return constructTree(preorder, 0, preorder.size()-1, inorder, 0 ,inorder.size()-1, mp);
+        for(int i=0;i<in.size();i++)
+            mp[in[i]]=i;
+        return solve(pre,0,pre.size()-1,in,0,in.size()-1,mp);
     }
 };
