@@ -10,13 +10,13 @@ public:
             int sz = q.size();
             for(int i=0;i<sz;i++)
             {
-                TreeNode* cur = q.front();
+                TreeNode* temp = q.front();
                 q.pop();
-                if(i==0) res.push_back(cur->val);
-                if(cur->right != NULL) q.push(cur->right);
-                if(cur->left != NULL) q.push(cur->left);
+                if(i==0) res.push_back(temp->val);
+                if(temp->right) q.push(temp->right);
+                if(temp->left) q.push(temp->left);
             }
         }
-      return res;  
+        return res;
     }
 };
