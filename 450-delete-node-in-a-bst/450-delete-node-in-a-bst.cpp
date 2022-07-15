@@ -1,46 +1,27 @@
 class Solution {
 public:
-    TreeNode* solve(vector<int>&res , int l , int r)
+    TreeNode* del(TreeNode* &root)
     {
-        int mid = l+(r-l)/2;
-        if(l<=r)
-        {
-            TreeNode* root = new TreeNode(res[mid]);
-            root->left = solve(res,l,mid-1);
-            root->right = solve(res,mid+1,r);
-            return root;
-        }
-        return NULL;
+        if(!root->left) return root;
+        return del(root->left);
     }
     TreeNode* deleteNode(TreeNode* root, int key) {
         if(!root) return NULL;
-        else if(!root->left && !root->right && root->val == key) return NULL;
-        else if(!root->left && !root->right) return root; 
-
-        vector<int>res;
-        stack<TreeNode*>st;
-        while(root!=NULL || !st.empty())
+        if(root->val > key)
+            root->left = deleteNode(root->left,key);
+        else if(root->val < key)
+            root->right = deleteNode(root->right,key);
+        if(root->val == key)
         {
-            if(root != NULL)
-            {
-                st.push(root);
-                root = root->left;
-            }
-            else
-            {
-                root = st.top();
-                st.pop();
-                res.push_back(root->val);
-                root = root->right;
+            if(!root->right) return root->left;
+            if(!root->left) return root->right;
+            else{
+                TreeNode* newNode = del(root->right);
+                int tmp = newNode->val;
+                root->val = tmp;
+                root->right = deleteNode(root->right,tmp);
             }
         }
-        vector<int>result;
-        for(auto i:res)
-        {
-            if(i==key) continue;
-            result.push_back(i);
-        }
-        TreeNode* node = solve(result,0,result.size()-1);
-        return node;
+        return root;
     }
 };
