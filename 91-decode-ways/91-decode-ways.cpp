@@ -1,23 +1,27 @@
 class Solution {
 public:
-    int dp[100];
-    int solve(string s,int idx)
-    {
-        if(idx==s.size())
-            return 1;
-        if(s[idx]=='0')
-            return 0;
-        if(dp[idx]!=-1)
-            return dp[idx];
-        if(idx==s.size()-1)
-            return 1;
-        string temp = s.substr(idx,2);
-        int res1 = solve(s,idx+1);
-        int res2 = (stoi(temp)>=1 && stoi(temp)<=26)?solve(s,idx+2):0 ;
-        return dp[idx] = res1+res2;
-    }
     int numDecodings(string s) {
-        memset(dp,-1,sizeof dp);
-        return solve(s,0);
+        int n = s.size();
+        vector<int>dp(n+1,0);
+        if(s[0]=='0')
+            return 0;
+        if(n==1)
+            return 1;
+        int i,j;
+        dp[0]=1;
+        dp[1]=1;
+        for(int i=2;i<=n;i++)
+        {
+            int one = s[i-1]-'0';
+            string temp = s.substr(i-2,2);
+            // cout<<temp<<"  ";
+            if(one>=1)
+                dp[i]+=dp[i-1];
+            // cout<<dp[i]<<" ";
+            if(stoi(temp)>=10 && stoi(temp)<=26)
+                dp[i]+=dp[i-2];
+            // cout<<dp[i]<<" ";
+        }
+        return dp[n];
     }
 };
