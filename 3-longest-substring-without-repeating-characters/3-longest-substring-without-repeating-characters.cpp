@@ -1,8 +1,8 @@
 class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
+        int l=0 , r=0 , cnt = 0;
         unordered_map<char,int>mp;
-        int l=0 , r=0 , cnt=0;
         for(int i=0;i<s.size();i++)
         {
             mp[s[r]]++;
@@ -12,7 +12,7 @@ public:
                 l++;
             }
             r++;
-            cnt = max(cnt , r-l);
+            cnt = max(cnt,r-l);
         }
         return cnt;
     }
