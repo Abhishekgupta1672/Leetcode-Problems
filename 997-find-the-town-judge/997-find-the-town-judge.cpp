@@ -1,18 +1,15 @@
 class Solution {
 public:
     int findJudge(int n, vector<vector<int>>& trust) {
-        if(trust.empty() && n==1) return 1;
-        vector<int>out(n+1,0);
-        vector<int>in(n+1,0);
-        for(auto x:trust)
+        vector<int>res(n+1,0);
+        for(int i=0;i<trust.size();i++)
         {
-            out[x[0]]++;
-            in[x[1]]++;
+            res[trust[i][0]]--;
+            res[trust[i][1]]++;
         }
-        for(int i=0;i<=n;i++)
+        for(int i=1;i<res.size();i++)
         {
-            if(in[i]==n-1 && out[i]==0)
-                return i;
+            if(res[i]==n-1) return i;
         }
         return -1;
     }
