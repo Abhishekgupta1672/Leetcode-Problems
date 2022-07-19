@@ -2,8 +2,8 @@ class Solution {
 public:
     bool canVisitAllRooms(vector<vector<int>>& rooms) {
         int n = rooms.size();
-        vector<bool>dfs(n);
-        dfs[0] = true;
+        vector<bool>v(n,false);
+        v[0] = true;
         stack<int>st;
         st.push(0);
         while(!st.empty())
@@ -12,15 +12,17 @@ public:
             st.pop();
             for(auto itr:rooms[tp])
             {
-                if(!dfs[itr])
+                if(!v[itr])
                 {
-                    dfs[itr] = true;
+                    v[itr] = true;
                     st.push(itr);
                 }
             }
         }
-        for(bool v: dfs)
-            if(!v) return false;
+        for(bool x:v)
+        {
+            if(!x) return false;
+        }
         return true;
     }
 };
