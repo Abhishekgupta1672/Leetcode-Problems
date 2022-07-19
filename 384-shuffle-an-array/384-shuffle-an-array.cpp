@@ -1,8 +1,7 @@
 class Solution {
+public:
     vector<int>original;
     int n;
-public:
-    
     Solution(vector<int>& nums) {
         original = nums;
         n = original.size();
