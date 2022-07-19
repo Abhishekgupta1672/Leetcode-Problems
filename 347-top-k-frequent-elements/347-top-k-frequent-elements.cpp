@@ -4,15 +4,20 @@ public:
         unordered_map<int,int>mp;
         for(auto x:nums)
             mp[x]++;
-        priority_queue<pair<int,int>>pq;
+        vector<vector<int>>v(nums.size()+1);
         for(auto x:mp)
-            pq.push({x.second,x.first});
-        vector<int>v;
-        while(k--)
         {
-            v.push_back(pq.top().second);
-            pq.pop();
+            v[x.second].push_back(x.first);
         }
-        return v;
+        vector<int>res;
+        for(int i=nums.size();k;i--)
+        {
+            for(auto a:v[i])
+            {
+                res.push_back(a);
+                k--;
+            }
+        }
+        return res;
     }
 };
