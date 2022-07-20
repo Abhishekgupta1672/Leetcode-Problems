@@ -1,18 +1,19 @@
 class Solution {
 public:
     vector<vector<int>> kClosest(vector<vector<int>>& points, int k) {
-        multimap<double,pair<int,int>>mp;
-        for(int i=0;i<points.size();i++)
+        priority_queue<vector<int>>pq;
+        for(auto x:points)
         {
-            double ans = sqrt(pow(points[i][0],2)+pow(points[i][1],2));
-            mp.insert({ans,{points[i][0],points[i][1]}});
+            pq.push({x[0]*x[0]+x[1]*x[1],x[0],x[1]});
+            if(pq.size()>k)
+                pq.pop();
         }
-        vector<vector<int>>res;
-        for(auto x:mp)
+        vector<vector<int>>res(k);
+        for(int i=0;i<k;i++)
         {
-            res.push_back({x.second.first,x.second.second});
-            k--;
-            if(k==0) break;
+            vector<int>top = pq.top();
+            pq.pop();
+            res[i] = {top[1],top[2]};
         }
         return res;
     }
