@@ -2,7 +2,6 @@ class Solution {
 public:
     ListNode* reverseBetween(ListNode* head, int left, int right) {
         ListNode* cur = head , *prev = NULL;
-        if(head==NULL) return NULL;
         while(left>1)
         {
             prev = cur;
@@ -10,7 +9,7 @@ public:
             left--;
             right--;
         }
-        ListNode* next = NULL, *con = prev, *temp = cur;
+        ListNode* con = prev, *next = NULL, *temp = cur;
         while(right>0)
         {
             next = cur->next;
