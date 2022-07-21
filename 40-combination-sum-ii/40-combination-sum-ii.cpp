@@ -1,26 +1,27 @@
 class Solution {
 public:
-    void solve(int ind , vector<int>cand,int target,vector<int>&ds,vector<vector<int>>&res)
+    void solve(int idx, vector<int>&cand, vector<int>&ds, int target, vector<vector<int>>&res)
     {
         if(target==0)
         {
             res.push_back(ds);
             return;
         }
-        for(int i=ind;i<cand.size();i++)
+        for(int i=idx;i<cand.size();i++)
         {
-            if(i>ind && cand[i]==cand[i-1]) continue;
-            if(cand[i]>target) break;
+            if(i>idx && cand[i]==cand[i-1]) continue;
+            if(cand[idx]>target) break;
             ds.push_back(cand[i]);
-            solve(i+1,cand,target-cand[i],ds,res);
+            solve(i+1,cand,ds,target-cand[i],res);
             ds.pop_back();
         }
     }
+    
     vector<vector<int>> combinationSum2(vector<int>& cand, int target) {
         sort(cand.begin(),cand.end());
-        vector<vector<int>>res;
         vector<int>ds;
-        solve(0,cand,target,ds,res);
+        vector<vector<int>>res;
+        solve(0,cand,ds,target,res);
         return res;
     }
 };
