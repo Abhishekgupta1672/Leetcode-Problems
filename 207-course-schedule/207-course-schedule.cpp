@@ -5,8 +5,8 @@ public:
         vector<int>adj[num];
         for(auto itr:pre)
         {
-            adj[itr[0]].push_back(itr[1]);
-            vis[itr[1]]++;
+            adj[itr[1]].push_back(itr[0]);
+            vis[itr[0]]++;
         }
         queue<int>q;
         for(int i=0;i<num;i++)
