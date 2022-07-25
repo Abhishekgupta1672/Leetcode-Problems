@@ -1,9 +1,8 @@
 class Solution {
 public:
     vector<int> searchRange(vector<int>& nums, int target) {
-        // vector<int>(2,-1);
-        int l = 0 , r = nums.size()-1;
         int res1 = -1 , res2 = -1;
+        int l = 0 , r = nums.size()-1;
         while(l<=r)
         {
             int mid = l+(r-l)/2;
@@ -21,7 +20,6 @@ public:
         while(l<=r)
         {
             int mid = l+(r-l)/2;
-            // cout<<mid<<" ";
             if(target==nums[mid])
             {
                 res2 = mid;
@@ -32,6 +30,6 @@ public:
             else
                 l = mid+1;
         }
-        return {res1 , res2};
+        return {res1,res2};
     }
 };
