@@ -4,13 +4,11 @@ public:
         int n = nums.size();
         vector<int>temp;
         temp.push_back(nums[0]);
-        int len = 1;
         for(int i=1;i<n;i++)
         {
-            if(nums[i]>temp.back())
+            if(temp.back()<nums[i])
             {
                 temp.push_back(nums[i]);
-                len++;
             }
             else
             {
@@ -18,6 +16,6 @@ public:
                 temp[index] = nums[i];
             }
         }
-        return len;
+        return temp.size();
     }
 };
