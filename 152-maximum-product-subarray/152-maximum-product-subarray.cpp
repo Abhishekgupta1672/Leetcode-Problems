@@ -6,7 +6,7 @@ public:
         int maxProd = 1;
         int minProd = 1;
         for (int n: nums) {
-            if (n <= 0) {
+            if (n < 0) {
                 swap(maxProd, minProd);
             }
             maxProd = max(maxProd*n, n);
