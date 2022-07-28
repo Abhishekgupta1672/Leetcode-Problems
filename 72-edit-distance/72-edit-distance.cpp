@@ -11,7 +11,7 @@ public:
     int minDistance(string s1, string s2) {
         int n = s1.size();
         int m = s2.size();
-        vector<vector<int>>dp(n+1,vector<int>(m+1,-1));
-        return distance(n,m,s1,s2,dp);
+        vector<vector<int>>dp(n,vector<int>(m,-1));
+        return distance(n-1,m-1,s1,s2,dp);
     }
 };
