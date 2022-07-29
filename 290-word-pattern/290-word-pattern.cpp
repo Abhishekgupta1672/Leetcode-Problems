@@ -5,8 +5,8 @@ public:
         stringstream ss(s);
         string word;
         vector<string>t;
-          while(ss>>word )
-               t.push_back(word);
+        while(ss>>word )
+            t.push_back(word);
         if(pattern.size()!=t.size())
             return false;
         for(int i=0;i<t.size();i++)
