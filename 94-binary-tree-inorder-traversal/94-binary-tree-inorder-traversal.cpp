@@ -1,15 +1,24 @@
 class Solution {
 public:
-    vector<int>res;
-    void solve(TreeNode* root)
-    {
-        if(root == NULL) return;
-        solve(root->left);
-        res.push_back(root->val);
-        solve(root->right);
-    }
     vector<int> inorderTraversal(TreeNode* root) {
-        solve(root);
+        stack<TreeNode*>st;
+        vector<int>res;
+        while(!st.empty() || root!= NULL)
+        {
+            if(root)
+            {
+                st.push(root);
+                root = root->left;
+            }
+            else
+            {
+                TreeNode* tmp = st.top();
+                st.pop();
+                res.push_back(tmp->val);
+                root = tmp;
+                root = root->right;
+            }
+        }
         return res;
     }
 };
