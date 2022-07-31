@@ -2,8 +2,8 @@ class Solution {
 public:
     bool isValidBST(TreeNode* root) {
         stack<TreeNode*>st;
-        TreeNode* temp=NULL;
-        while(!st.empty() || root!= NULL)
+        vector<int>res;
+        while(!st.empty() || root!=NULL)
         {
             if(root)
             {
@@ -12,13 +12,15 @@ public:
             }
             else
             {
-                root = st.top();
+                TreeNode* temp = st.top();
                 st.pop();
-                if(temp!=NULL && root->val <= temp->val)
-                    return false;
-                temp = root;
-                root = root->right;
+                res.push_back(temp->val);
+                root = temp->right;
             }
+        }
+        for(int i=1;i<res.size();i++)
+        {
+            if(res[i-1] >= res[i]) return false;
         }
         return true;
     }
