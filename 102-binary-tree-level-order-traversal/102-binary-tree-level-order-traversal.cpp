@@ -8,16 +8,16 @@ public:
         while(!q.empty())
         {
             int sz = q.size();
-            vector<int>v;
+            vector<int>temp;
             for(int i=0;i<sz;i++)
             {
-                TreeNode* temp = q.front();
+                TreeNode* node = q.front();
                 q.pop();
-                v.push_back(temp->val);
-                if(temp->left) q.push(temp->left);
-                if(temp->right) q.push(temp->right);
+                temp.push_back(node->val);
+                if(node->left) q.push(node->left);
+                if(node->right) q.push(node->right);
             }
-            res.push_back(v);
+            res.push_back(temp);
         }
         return res;
     }
