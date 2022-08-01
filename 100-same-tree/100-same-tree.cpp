@@ -1,8 +1,7 @@
 class Solution {
 public:
     bool isSameTree(TreeNode* p, TreeNode* q) {
-        if(!p && !q) return true;
-        if(!p && q || !q && p) return false;
+        if(!p || !q) return p==q;
         queue<TreeNode*>q1;
         q1.push(p);
         q1.push(q);
