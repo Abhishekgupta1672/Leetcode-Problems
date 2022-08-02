@@ -3,6 +3,8 @@ public:
     bool isValidBST(TreeNode* root) {
         stack<TreeNode*>st;
         vector<int>res;
+        TreeNode* temp = NULL;
+
         while(!st.empty() || root!=NULL)
         {
             if(root)
@@ -12,15 +14,13 @@ public:
             }
             else
             {
-                TreeNode* temp = st.top();
+                root = st.top();
                 st.pop();
-                res.push_back(temp->val);
-                root = temp->right;
+                if(temp!=NULL && root->val <= temp->val)
+                    return false;
+                temp = root;
+                root = root->right;
             }
-        }
-        for(int i=1;i<res.size();i++)
-        {
-            if(res[i-1] >= res[i]) return false;
         }
         return true;
     }
