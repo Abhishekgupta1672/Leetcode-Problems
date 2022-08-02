@@ -2,7 +2,7 @@ class Solution {
 public:
     TreeNode* solve(vector<int>&in,int is,int ie,vector<int>&post,int ps,int pe,map<int,int>&mp)
     {
-        if(is>ie || ps>pe) return NULL;
+        if(ps>pe || is>ie) return NULL;
         TreeNode* root = new TreeNode(post[pe]);
         int inroot = mp[root->val];
         int lft = inroot-is;
