@@ -1,6 +1,6 @@
 class Solution {
 public:
-    TreeNode* solve(vector<int>&pre,int ps,int pe,vector<int>&in,int is,int ie,map<int,int>&mp)
+    TreeNode* solve(vector<int>&pre,int ps,int pe , vector<int>&in,int is,int ie, map<int,int>&mp)
     {
         if(ps>pe || is>ie) return NULL;
         TreeNode* root = new TreeNode(pre[ps]);
@@ -10,12 +10,12 @@ public:
         root->right = solve(pre,ps+lft+1,pe,in,inroot+1,ie,mp);
         return root;
     }
-    TreeNode* buildTree(vector<int>& pre, vector<int>& in)
-    {
+    
+    TreeNode* buildTree(vector<int>& pre, vector<int>& in) {
         if(pre.size() != in.size()) return NULL;
         map<int,int>mp;
         for(int i=0;i<in.size();i++)
-            mp[in[i]]=i;
-        return solve(pre,0,pre.size()-1,in,0,in.size()-1,mp);
+            mp[in[i]] = i;
+        return solve(pre,0,pre.size()-1 , in,0,in.size()-1, mp);
     }
 };
