@@ -9,7 +9,8 @@ public:
         return max(left,right)+root->val;
     }
     
-    int maxPathSum(TreeNode* root) {
+    int maxPathSum(TreeNode* root)
+    {
         int maxi = INT_MIN;
         solve(root , maxi);
         return maxi;
