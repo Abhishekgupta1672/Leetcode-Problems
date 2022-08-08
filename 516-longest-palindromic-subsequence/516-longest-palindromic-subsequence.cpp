@@ -1,17 +1,18 @@
 class Solution {
 public:
+    int lps(int l, int r, string &s,int dp[1001][1001])
+    {
+        if(l==r) return 1;
+        if(l>r) return 0;
+        if(dp[l][r] != -1) return dp[l][r];
+        if(s[l]==s[r])
+            return dp[l][r] = 2+lps(l+1,r-1,s,dp);
+        return dp[l][r] = max(lps(l+1,r,s,dp),lps(l,r-1,s,dp));
+    }
+    
     int longestPalindromeSubseq(string s) {
-        int n = s.size();
-        vector<vector<int>>dp(n+1,vector<int>(n));
-        for(int i=0;i<n;i++)
-            dp[1][i] = 1;
-        for(int i=2;i<=n;i++){
-            for(int j=0;j<n-i+1;j++)
-            {
-                if(s[j]==s[i+j-1]) dp[i][j] = 2+dp[i-2][j+1];
-                else dp[i][j] = max(dp[i-1][j],dp[i-1][j+1]);
-            }
-        }
-        return dp[n][0];
+        int dp[1001][1001];
+        memset(dp,-1,sizeof(dp));
+        return lps(0,s.size()-1,s,dp);
     }
 };
