@@ -10,15 +10,13 @@ public:
             pq.push(x.second);
         }
         int cnt = 0;
-        int sz = n;
-        while(!pq.empty())
+        int sz = 0;
+        while(sz < n/2)
         {
-            int tp = pq.top();
+            sz+=pq.top();
             pq.pop();
             cnt++;
-            if(sz-tp <= n/2) return cnt;
-            sz-=tp;
         }
-        return 0;
+        return cnt;
     }
 };
