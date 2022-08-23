@@ -12,26 +12,19 @@ class Solution {
 public:
     bool isPalindrome(ListNode* head) {
         ListNode* temp = head;
-        int cnt = 0;
+        stack<int>st;
         while(temp != NULL)
         {
+            st.push(temp->val);
             temp = temp->next;
-            cnt++;
         }
-        ListNode* prev = NULL , *cur = head , *next;
-        for(int i=0;i<cnt/2;i++){
-            next = cur->next;
-            cur->next = prev;
-            prev = cur;
-            cur = next;
-        }
-        if(cnt & 1) cur = cur->next;
-        while(cur!=NULL)
+        while(head != NULL)
         {
-            if(prev->val != cur->val)
+            int tp = st.top();
+            st.pop();
+            if(tp != head->val)
                 return false;
-            prev = prev->next;
-            cur = cur->next;
+            head = head->next;
         }
         return true;
     }
