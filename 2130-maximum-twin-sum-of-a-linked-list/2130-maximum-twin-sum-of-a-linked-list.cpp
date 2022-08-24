@@ -10,33 +10,27 @@
  */
 class Solution {
 public:
-    void Reverse(ListNode** head)
-    {
-        ListNode* cur = *head , *prev = NULL , *next;
-        while(cur != NULL)
-        {
-            next = cur->next;
-            cur->next = prev;
-            prev = cur;
-            cur = next;
-        }
-        *head = prev;
-    }
-    
     int pairSum(ListNode* head) {
         ListNode* slow = head;
         ListNode* fast = head;
-        while(fast->next && fast->next->next)
+        while(fast && fast->next)
         {
             slow = slow->next;
             fast = fast->next->next;
         }
-        slow = slow->next;
-        Reverse(&slow);
+        
+        ListNode* prev = NULL , *next;
+        while(slow != NULL)
+        {
+            next = slow->next;
+            slow->next = prev;
+            prev = slow;
+            slow = next;
+        }
         int ans = 0;
-        while(slow != NULL){
-            ans = max(ans,head->val+slow->val);
-            slow = slow->next;
+        while(prev != NULL){
+            ans = max(ans,head->val+prev->val);
+            prev = prev->next;
             head = head->next;
         }
         return ans;
