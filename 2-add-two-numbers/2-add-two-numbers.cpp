@@ -29,7 +29,8 @@ public:
             else y=0;
             
             int temp = x+y+carry;
-            tail->next = new ListNode(temp%10);
+            tail->next = new ListNode();
+            tail->next->val = temp%10;
             tail = tail->next;
             carry = temp/10;
         }
