@@ -1,38 +1,46 @@
 class Solution {
 public:
-    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-        stack<int>s1,s2;
-        while(l1){
-            s1.push(l1->val);
-            l1 = l1->next;
+    ListNode* rev(ListNode* head)
+    {
+        ListNode* prev = NULL , *cur = head , *next = NULL;
+        while(cur){
+            next = cur->next;
+            cur->next = prev;
+            prev = cur;
+            cur = next;
         }
-        while(l2){
-            s2.push(l2->val);
-            l2 = l2->next;
-        }
-        ListNode* head = NULL;
-        int carry = 0 , t1 = 0 , t2 = 0;
-        while(!s1.empty() || !s2.empty() || carry){
-            if(!s1.empty())
-            {
-                t1 = s1.top();
-                s1.pop();
-            }
-            else t1 = 0;
-            
-            if(!s2.empty())
-            {
-                t2 = s2.top();
-                s2.pop();
-            }
-            else t2 = 0;
-            
-            int res = t1+t2+carry;
-            ListNode* newNode = new ListNode(res%10);
-            newNode->next = head;
-            head = newNode;
-            carry = res/10;
-        }
+        head = prev;
         return head;
+    }
+    
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        
+        if(!l1 and !l2)return NULL;
+        if(!l1)return l2;
+        if(!l2)return l1;
+        l1 = rev(l1);
+        l2 = rev(l2);
+        ListNode* headd = new ListNode(0);
+        ListNode* temp = headd;
+        int carry =0;
+        while(l1 or l2 or carry){
+            int sum =0;
+            if(l1){
+                sum+=l1->val;
+                l1 = l1->next;
+            }
+            if(l2){
+                sum+=l2->val;
+                l2 = l2->next;
+            }
+            sum+=carry;
+            carry = sum/10;
+            ListNode* newnode = new ListNode(sum%10);
+            temp->next = newnode;
+            temp = temp->next;
+
+        }
+        headd = rev(headd->next);
+        return headd;
     }
 };
