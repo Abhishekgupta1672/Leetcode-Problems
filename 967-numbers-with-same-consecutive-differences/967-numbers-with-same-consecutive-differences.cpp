@@ -1,24 +1,23 @@
 class Solution {
 public:
-    void dfs(int num, int n, int k, vector<int>&res){
-        if(n==0){
-            res.push_back(num);
+    void rec(vector<int> &tmp,int n,int k,int num,int i=1){
+        if(i == n) {
+            tmp.push_back(num);
             return;
         }
-        else{
-            int ans = num%10;
-            if(ans+k <= 9)
-                dfs(num*10+ans+k,n-1,k,res);
-            if(k != 0 && ans >= k)
-                dfs(num*10+ans-k,n-1,k,res);
+        int d = num%10;
+        if(d+k <= 9){
+            rec(tmp,n,k,num*10+d+k,i+1);
+        }
+        if(k != 0 && d-k >=0){
+            rec(tmp,n,k,num*10+d-k,i+1);
         }
     }
-    
     vector<int> numsSameConsecDiff(int n, int k) {
-        vector<int>res;
-        for(int i=1;i<=9;i++){
-            dfs(i,n-1,k,res);
+        vector<int> tmp;
+        for(int i = 1 ; i <= 9 ; i++){
+            rec(tmp,n,k,i);
         }
-        return res;
+        return tmp;
     }
 };
