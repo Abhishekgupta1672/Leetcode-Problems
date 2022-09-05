@@ -3,19 +3,17 @@ public:
     vector<int> preorderTraversal(TreeNode* root) {
         stack<TreeNode*>st;
         vector<int>res;
-        while(!st.empty() || root!= NULL)
-        {
-            if(root)
-            {
-                st.push(root);
+        while(root != NULL || !st.empty()){
+            if(root){
                 res.push_back(root->val);
+                st.push(root);
                 root = root->left;
             }
-            else
-            {
+            else{
                 TreeNode* tmp = st.top();
                 st.pop();
-                root = tmp->right;
+                root = tmp;
+                root = root->right;
             }
         }
         return res;
