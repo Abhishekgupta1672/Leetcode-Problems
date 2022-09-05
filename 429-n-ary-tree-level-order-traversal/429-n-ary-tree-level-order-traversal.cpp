@@ -1,23 +1,15 @@
 class Solution {
 public:
+    vector<vector<int>>res;
+    void rec(Node* root , int level){
+        if(!root) return;
+        if(level == res.size()) res.push_back({});
+        res[level].push_back(root->val);
+        for(Node* child : root->children)
+            rec(child,level+1);
+    }
     vector<vector<int>> levelOrder(Node* root) {
-        vector<vector<int>>res;
-        if(!root) return res;
-        queue<Node*>q;
-        q.push(root);
-        while(!q.empty()){
-            vector<int>ans;
-            int sz = q.size();
-            for(int i=0;i<sz;i++){
-                Node* cur = q.front();
-                q.pop();
-                ans.push_back(cur->val);
-                for(Node* ch : cur->children){
-                    q.push(ch);
-                }
-            }
-            res.push_back(ans);
-        }
+        rec(root,0);
         return res;
     }
 };
