@@ -1,21 +1,21 @@
 class Solution {
 public:
+    unordered_map<int,int>mp;
+    void dls(TreeNode* root , int level){
+        if(!root) return;
+        mp[level]+=root->val;
+        dls(root->left,level+1);
+        dls(root->right,level+1);
+    }
     int deepestLeavesSum(TreeNode* root) {
-        int sum = 0;
-        queue<TreeNode*> q;
-        q.push(root);
-        while (!q.empty()) {
-            int res = 0;
-            int sz = q.size();
-            for (int i =0;i<sz;i++) {
-                TreeNode* node = q.front();
-                q.pop();
-                res += node->val;
-                if (node->right) q.push(node->right);
-                if (node->left)  q.push(node->left);
+        dls(root,0);
+        int maxi = INT_MIN ,res = 0;
+        for(auto i : mp){
+            if(i.first > maxi){
+                maxi = i.first;
+                res = i.second;
             }
-            sum = res;
         }
-        return sum; 
+        return res;
     }
 };
