@@ -1,22 +1,8 @@
 class Solution {
 public:
     bool isUnivalTree(TreeNode* root) {
-        queue<TreeNode*>q;
-        q.push(root);
-        while(!q.empty()){
-            for(int i=0;i<q.size();i++){
-                TreeNode* tp = q.front();
-                q.pop();
-                if(tp->left){
-                    if(tp->left->val != tp->val) return false;
-                    else q.push(tp->left);
-                }
-                if(tp->right){
-                    if(tp->right->val != tp->val) return false;
-                    else q.push(tp->right);
-                }
-            }
-        }
-        return true;
+        bool l = (root->left==NULL || (root->val==root->left->val && isUnivalTree(root->left)));
+        bool r = (root->right==NULL || (root->val==root->right->val && isUnivalTree(root->right)));
+        return l && r;
     }
 };
