@@ -1,5 +1,6 @@
 class Solution {
 public:
+    int mod = 1e9+7;
     long int ans = 0 , total = 0;
     int solve(TreeNode* root){
         if(!root) return 0;
@@ -11,6 +12,6 @@ public:
     long int maxProduct(TreeNode* root) {
         total = solve(root);
         solve(root);
-        return ans%int(1e9+7);
+        return ans%mod;
     }
 };
