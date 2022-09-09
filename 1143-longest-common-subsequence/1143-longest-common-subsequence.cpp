@@ -1,17 +1,25 @@
 class Solution {
 public:
-    int solve(int i,int j,string& str1,string& str2, vector<vector<int>>&dp){
-    if(i==0|| j==0) return 0;
-    if(dp[i][j] != -1) return dp[i][j];
-    if(str1[i-1]==str2[j-1])
-        return dp[i][j] = 1+solve(i-1,j-1,str1,str2,dp);
-    else
-    return dp[i][j] = max(solve(i-1,j,str1,str2,dp),solve(i,j-1,str1,str2,dp));
-}
+    int dp[1000 + 1][1000 + 1];
+    
+    int maxLen(string& s1, string& s2, int n, int m)
+    {
+        if (n == 0 || m == 0)
+            return 0;
+        
+        if (dp[n][m] != -1)
+            return dp[n][m];
 
-    int longestCommonSubsequence(string text1, string text2) {
-        int n=text1.size(),m=text2.size();
-        vector<vector<int>>dp(1001,vector<int>(1001,-1));
-        return solve(n,m,text1,text2,dp);
+        if (s1[n - 1] == s2[m - 1])
+            return dp[n][m] = 1 + maxLen(s1, s2, n - 1, m - 1);
+        else
+            return dp[n][m] = max(0 + maxLen(s1, s2, n - 0, m - 1), 0 + maxLen(s1, s2, n - 1, m - 0));
     }
+        
+    int longestCommonSubsequence(string s1, string s2) 
+    {
+        memset(dp, -1, sizeof(dp));        
+        return maxLen(s1, s2, s1.length(), s2.length());
+    }
+    
 };
