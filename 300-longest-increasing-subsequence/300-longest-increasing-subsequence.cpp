@@ -14,6 +14,7 @@ public:
             else
             {
                 int index = lower_bound(temp.begin(),temp.end(),nums[i])-temp.begin();
+                cout<<index<<" ";
                 temp[index] = nums[i];
             }
         }
