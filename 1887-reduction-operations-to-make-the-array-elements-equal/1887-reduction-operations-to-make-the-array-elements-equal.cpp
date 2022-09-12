@@ -1,18 +1,15 @@
 class Solution {
 public:
     int reductionOperations(vector<int>& nums) {
-        map<int,int>mp;
-        for(auto x:nums){
-            mp[x]++;
+        sort(nums.begin(),nums.end());
+        int n = nums.size();
+        int cnt = 0;
+        for(int i=n-1;i>=1;i--){
+            if(nums[i] > nums[i-1]){
+                cnt+=(n-i);
+                nums[i] = nums[i-1];
+            }
         }
-        vector<pair<int,int>>res;
-        int sum = 0 , maxS = 0;
-        for(auto x : mp) res.push_back({x.first,x.second});
-        sort(res.begin(),res.end());
-        for(int i=res.size()-1;i>=1;i--){
-            sum+=res[i].second;
-            maxS+=sum;
-        }
-        return maxS;
+        return cnt;
     }
 };
