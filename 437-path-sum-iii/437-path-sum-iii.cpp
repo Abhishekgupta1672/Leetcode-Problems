@@ -1,22 +1,21 @@
 class Solution {
 public:
-    long long cnt = 0;
-    
-    void dfs(TreeNode* root, long long target){
-        if(!root)return;
-        if(root->val==target){
+    int cnt = 0;
+    void rec(TreeNode* root,long long ts){
+        if(!root) return;
+        if(root->val == ts){
             cnt++;
+            // return;
         }
-        dfs(root->left,target-root->val);
-        dfs(root->right,target-root->val);
+        rec(root->left,ts-root->val);
+        rec(root->right,ts-root->val);
     }
-    
-    long long pathSum(TreeNode* root, long long sum) {
+    int pathSum(TreeNode* root, long long targetSum) {
         if(root){
-            dfs(root,sum);
-            pathSum(root->left,sum);
-            pathSum(root->right,sum);
-        }
+            rec(root,targetSum);
+            pathSum(root->left,targetSum);
+            pathSum(root->right,targetSum);
+        }    
         return cnt;
     }
 };
