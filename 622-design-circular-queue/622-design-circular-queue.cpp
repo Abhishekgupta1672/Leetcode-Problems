@@ -1,41 +1,54 @@
+struct Node {
+public:
+    int val;
+    Node* next;
+    Node(int v, Node* n=nullptr) {
+        val = v;
+        next = n;
+    }
+};
 class MyCircularQueue {
 private:
-    int maxSize, head = 0, tail = -1;
-    vector<int> data;    
+    int maxSize, size = 0;
+    Node *head = new Node(0), *tail = new Node(0);    
     
 public:
     MyCircularQueue(int k) {
-        data.resize(k);
         maxSize = k;
     }
     
-    bool enQueue(int value) {
-        if(isFull()) return false;
-        tail = (tail + 1) % maxSize;
-        data[tail] = value;
+    bool enQueue(int val) {
+        if (isFull()) return false;
+        Node* newNode = new Node(val);
+        if (isEmpty()) head = newNode, tail = newNode;
+        else tail->next = newNode, tail = tail->next;
+        size++;
         return true;
     }
     
     bool deQueue() {
-        if(isEmpty()) return false;
-        if(head==tail) head = 0 , tail = -1;
-        else head = (head+1)%maxSize;
+        if (isEmpty()) return false;
+        Node* rem = head;
+        head = head->next;
+        delete rem;
+        size--;
         return true;
     }
     
     int Front() {
-        return isEmpty() ? -1 : data[head];
+        return isEmpty() ? -1 : head->val;
     }
     
     int Rear() {
-        return isEmpty() ? -1 : data[tail];
+        return isEmpty() ? -1 : tail->val;
     }
     
     bool isEmpty() {
-        return tail == -1;
+        return size == 0;
     }
     
     bool isFull() {
-        return !isEmpty() && (tail + 1) % maxSize == head;
+        return size == maxSize;
     }
+
 };
