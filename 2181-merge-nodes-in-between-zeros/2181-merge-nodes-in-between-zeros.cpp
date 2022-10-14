@@ -1,15 +1,19 @@
 class Solution {
 public:
     ListNode* mergeNodes(ListNode* head) {
-        if(!head->next) return nullptr;
-        ListNode* ptr = head->next;
-        int sum = 0;
-        while(ptr->val != 0){
-            sum+=ptr->val;
-            ptr = ptr->next;
+        head = head->next;
+        ListNode* start = head;
+        while(start){
+            ListNode* end = start;
+            int sum = 0;
+            while(end->val != 0) {
+                sum+=end->val;
+                end = end->next;
+            }
+            start->val = sum;
+            start->next = end->next;
+            start = start->next;
         }
-        head->next->val = sum;
-        head->next->next = mergeNodes(ptr);
-        return head->next;
+        return head;
     }
 };
