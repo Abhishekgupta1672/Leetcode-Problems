@@ -1,5 +1,5 @@
 class Solution {
-public:
+public:  
     string breakPalindrome(string str) {
         int sz = str.size();
         for(int i=0;i<sz/2;i++){
