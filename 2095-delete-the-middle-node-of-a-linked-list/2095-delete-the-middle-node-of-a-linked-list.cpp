@@ -1,24 +1,22 @@
 class Solution {
 public:
-    int length(ListNode* head)
-    {
-        int cnt=0;
+    int length(ListNode* head){
+        int cnt = 0;
         ListNode* temp = head;
-        while(temp)
-        {
+        while(temp != NULL){
             temp = temp->next;
             cnt++;
         }
         return cnt;
     }
+    
     ListNode* deleteMiddle(ListNode* head) {
         if(head->next == NULL) return NULL;
         ListNode* temp = head;
         int len = length(head);
         int i=1;
-        while(i<len/2){
+        for(int i=1;i<len/2;i++){
             temp = temp->next;
-            i++;
         }
         temp->next = temp->next->next;
         return head;
