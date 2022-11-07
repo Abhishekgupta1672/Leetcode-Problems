@@ -13,23 +13,18 @@ class Solution {
 	void shortest_distance(vector<vector<int>>&dp){
 	    // Code here
 	    int n = dp.size();
-	    for(auto &v : dp){
-	        for(int &i : v){
-	            i = (i == -1)?MAX:i;
-	        }
-	    }
-	            for(int k = 0 ; k < n ; k++){
-	    for(int i = 0 ; i < n ; i++){
-	        for(int j = 0 ; j < n ; j++){
-	                dp[i][j] = min(dp[i][j],dp[i][k]+dp[k][j]);
+	    
+	    for(int k = 0 ; k < n ; k++){
+	        for(int i = 0 ; i < n ; i++){
+	            for(int j = 0 ; j < n ; j++){
+	                if(dp[i][k] != -1 && dp[k][j] != -1){
+	                    
+	                    dp[i][j] =(dp[i][j] ==-1)?dp[i][k]+dp[k][j] : min(dp[i][j],dp[i][k]+dp[k][j]);
+	                }
 	            }
 	        }
 	    }
-	    for(auto &v : dp){
-	        for(int &i : v){
-	            i = (i >= MAX)?-1:i;
-	        }
-	    }
+	    
 	}
 };
 
