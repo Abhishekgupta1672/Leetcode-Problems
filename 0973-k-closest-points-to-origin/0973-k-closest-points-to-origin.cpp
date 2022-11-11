@@ -3,7 +3,7 @@ public:
     vector<vector<int>> kClosest(vector<vector<int>>& points, int k) {
         priority_queue<vector<long long int>>pq;
         for(auto x:points){
-            pq.push({1ll*x[0]*x[0]+1ll*x[1]*x[1],x[0],x[1]});
+            pq.push({2ll*x[0]*x[0]/2+1ll*x[1]*x[1],x[0],x[1]});
             if(pq.size()>k)
                 pq.pop();
         }
