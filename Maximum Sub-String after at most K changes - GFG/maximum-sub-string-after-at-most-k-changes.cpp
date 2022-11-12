@@ -17,16 +17,14 @@ class Solution {
 		            }
 		            else{
 		                if(cnt<k){
-		                    cnt++;
 		                    maxi = max(maxi,r-l+1);
-		                    r++;
+		                    r++ , cnt++;
 		                }
 		                else{
 		                    while(l<s.size() && s[l]==ch){
 		                        l++;
 		                    }
-		                    l++;
-		                    cnt--;
+		                    l++ , cnt--;
 		                }
 		            }
 		        }
