@@ -5,9 +5,8 @@ public:
         vector<int>res(temp.size());
         for(int i=0;i<temp.size();i++){
             while(!st.empty() && temp[i]>temp[st.top()]){
-                int idx = st.top();
+                res[st.top()] = i-st.top();
                 st.pop();
-                res[idx] = i-idx;
             }
             st.push(i);
         }
