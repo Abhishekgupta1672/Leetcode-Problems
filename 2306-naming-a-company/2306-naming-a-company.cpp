@@ -16,7 +16,7 @@ public:
                     res[in][j] += 1;
                 }
             }
-        }
+        }   
         long long cnt = 0;
         for(int i=0;i<26;i++){
             for(int j=0;j<26;j++){
