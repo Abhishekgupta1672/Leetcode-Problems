@@ -13,15 +13,20 @@ public:
             v2[s2[i]-'a']++;
             right++;
         }
+        int cnt = 0;
         right-=1;
         while(right<n){
             if(v1==v2)
+            {
+                cout<<cnt;
                 return true;
+            }
             right+=1;
             if(right!=n)
                 v2[s2[right]-'a']+=1;
             v2[s2[left]-'a']-=1;
             left++;
+            cnt++;
         }
         return false;
     }
