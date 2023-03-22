@@ -28,8 +28,6 @@ public:
                 }
             }
         }
-            
-        //find minimum path score among visited nodes
         int mini_path = INT_MAX;
         for(int i=0; i<roads.size(); i++)
         {
