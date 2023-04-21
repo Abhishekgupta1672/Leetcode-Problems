@@ -13,7 +13,7 @@ public:
         return dp[idx][buy] = profit;
     }
     
-    int maxProfit(vector<int>& prices) {
+    int maxProfit(vector<int>& prices){
         int n = prices.size();
         vector<vector<int>>dp(n,vector<int>(2,-1));
         return maxi(prices,0,0,n,dp);
