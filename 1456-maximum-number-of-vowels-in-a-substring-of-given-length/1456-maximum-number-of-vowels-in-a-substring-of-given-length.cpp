@@ -7,7 +7,6 @@ public:
             if(s[i]=='a' || s[i]=='e' || s[i]=='i' || s[i]=='o' || s[i]=='u') 
                 len++;
         }
-        // cout<<len;
         int maxi = len;
         for(int i=k;i<n;i++){
             if(s[l]=='a' || s[l]=='e' || s[l]=='i' || s[l]=='o' || s[l]=='u')
@@ -16,7 +15,6 @@ public:
                 len++;
             l++;
             maxi = max(maxi,len);
-            cout<<len<<" ";
         }
         return maxi;
     }
